@@ -1,5 +1,6 @@
 """
-@author: Viet Nguyen <nhviet1009@gmail.com>
+@original author: Viet Nguyen <nhviet1009@gmail.com>
+Modified by Houssam Kherraz
 """
 from torch.utils.data import Dataset
 import numpy as np
