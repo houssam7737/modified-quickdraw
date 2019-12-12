@@ -34,6 +34,8 @@ def get_args():
     parser.add_argument("--data_path", type=str, default="data", help="the root folder of dataset")
     parser.add_argument("--log_path", type=str, default="tensorboard")
     parser.add_argument("--saved_path", type=str, default="trained_models")
+    parser.add_argument("--input_size", type=int, default=28)
+    parser.add_argument("--dataset", type=str, default="quickdraw")
     args = parser.parse_args()
     return args
 
@@ -60,7 +62,7 @@ def train(opt):
     print("there are {} images for test phase".format(test_set.__len__()))
 
 
-    model = QuickDraw(num_classes=training_set.num_classes)
+    model = QuickDraw(num_classes=training_set.num_classes, input_size= opt.input_size)
 
     if os.path.isdir(opt.log_path):
         shutil.rmtree(opt.log_path)

@@ -4,8 +4,12 @@ Modified by Houssam Kherraz
 """
 from torch.utils.data import Dataset
 import numpy as np
+from PIL import Image
 
-from src.config import CLASSES
+
+# from src.config import CLASSES
+
+CLASSES = [str(i) for i in range(1,11)]
 
 
 class MyDataset(Dataset):
@@ -25,11 +29,23 @@ class MyDataset(Dataset):
     def __len__(self):
         return self.num_samples
 
-    def __getitem__(self, item):
+    def __getitem__(self, item, dataset='svhn'):
+        
         file_ = "{}/full_numpy_bitmap_{}.npy".format(self.root_path, CLASSES[int(item / self.num_images_per_class)])
         image = np.load(file_).astype(np.float32)[self.offset + (item % self.num_images_per_class)]
-        image /= 255
-        return image.reshape((1, 28, 28)), int(item / self.num_images_per_class)
+        if dataset == 'quickdraw':
+            image /= 255
+            return image.reshape((1, 28, 28)), int(item / self.num_images_per_class)
+        else:
+            image = np.squeeze(image)
+            image = image.astype('uint8')
+            # print(type(image))
+            # print("SHAPE", image.shape, image[0])
+            gray = Image.fromarray(image.T)
+            gray = gray.convert('L')
+            gray = np.array(gray).astype(np.float32)
+            gray /= 255
+            return gray.reshape((1, 32, 32)), int(item / self.num_images_per_class)
 
 
 if __name__ == "__main__":
