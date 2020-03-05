@@ -7,9 +7,9 @@ import numpy as np
 from PIL import Image
 
 
-# from src.config import CLASSES
+from src.config import CLASSES
 
-CLASSES = [str(i) for i in range(1,11)]
+# CLASSES = [str(i) for i in range(1,11)]
 
 
 class MyDataset(Dataset):
@@ -36,6 +36,9 @@ class MyDataset(Dataset):
         if dataset == 'quickdraw':
             image /= 255
             return image.reshape((1, 28, 28)), int(item / self.num_images_per_class)
+        elif dataset == 'imagenette':
+
+            return image, int(item / self.num_images_per_class) 
         else:
             image = np.squeeze(image)
             image = image.astype('uint8')

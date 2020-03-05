@@ -13,5 +13,4 @@ BLUE_RGB = (255, 0, 0)
 YELLOW_RGB = (0, 255, 255)
 WHITE_RGB = (255, 255, 255)
 
-CLASSES = ["apple", "book", "bowtie", "candle", "cloud", "cup", "door", "envelope", "eyeglasses", "guitar", "hammer",
-           "hat", "ice cream", "leaf", "scissors", "star", "t-shirt", "pants", "lightning", "tree"]
+CLASSES = ['tench', 'English_springer', 'cassette_player', 'chain_saw', 'church', 'French_horn', 'garbage_truck', 'gas_pump', 'golf_ball', 'parachute']
